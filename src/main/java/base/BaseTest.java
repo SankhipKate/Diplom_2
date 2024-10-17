@@ -31,11 +31,16 @@ public class BaseTest {
 
     // Метод для получения accessToken для пользователя
     protected String getAccessToken(String email, String password) {
-        return RestAssured
-                .given()
+        Response response = RestAssured
+                .given().log().all()
                 .contentType(TestConstants.CONTENT_TYPE_JSON)
                 .body(RequestBuilder.buildRequestBody(email, password))
-                .post(TestConstants.ENDPOINT_LOGIN)
+                .post(TestConstants.ENDPOINT_LOGIN);
+
+        // Добавляем вывод тела ответа для отладки
+        System.out.println("Ответ авторизации: " + response.getBody().asString());
+
+        return response
                 .then()
                 .extract()
                 .path(TestConstants.FIELD_ACCESS_TOKEN);

@@ -47,8 +47,6 @@ public class UserLoginTest extends BaseTest {
 
         // Проверяем, что код ответа 200 (успешно)
         checkResponseStatus(response, HTTP_OK);
-        // Логирование успешного шага
-        System.out.println(TestConstants.LOG_USER_LOGIN_SUCCESS + testEmail);
 
         // Проверяем, что accessToken был возвращен
         String accessToken = response.jsonPath().getString(TestConstants.FIELD_ACCESS_TOKEN);
@@ -66,8 +64,6 @@ public class UserLoginTest extends BaseTest {
 
         // Проверяем, что код ответа 401 (Unauthorized)
         checkResponseStatus(response, HTTP_UNAUTHORIZED);
-        // Логирование ошибки
-        System.out.println(TestConstants.LOG_USER_LOGIN_FAILURE + testEmail);
 
         // Проверяем сообщение об ошибке
         String errorMessage = response.jsonPath().getString(TestConstants.MESSAGE_FIELD);
@@ -84,8 +80,6 @@ public class UserLoginTest extends BaseTest {
 
         // Проверяем, что код ответа 401 (Unauthorized)
         checkResponseStatus(response, HTTP_UNAUTHORIZED);
-        // Логирование ошибки
-        System.out.println(TestConstants.LOG_USER_LOGIN_FAILURE + TestConstants.NON_EXISTENT_EMAIL);
 
         // Проверяем сообщение об ошибке
         String errorMessage = response.jsonPath().getString(TestConstants.MESSAGE_FIELD);

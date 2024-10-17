@@ -18,6 +18,8 @@ public class TestConstants {
     public static final String MESSAGE_USER_EXISTS = "User already exists";
     public static final String MESSAGE_MISSING_FIELDS = "Email, password and name are required fields";
     public static final String MESSAGE_INVALID_CREDENTIALS = "email or password are incorrect";
+    public static final String MESSAGE_UNAUTHORIZED = "You should be authorised"; // Добавляем это сообщение
+
 
     // Контент-тип
     public static final String CONTENT_TYPE_JSON = "application/json";
@@ -36,9 +38,7 @@ public class TestConstants {
     public static final String PASSWORD = "password";
     public static final String INVALID_PASSWORD = "wrong_password";
     public static final String TEST_USER_NAME = "UniqueUser";
-    public static final String EXISTING_USER_NAME = "ExistingUser";
-    public static final String EMAIL_MISSING_NAME = "user_without_name@test.com";
-    public static final String EXISTING_USER_EMAIL = "existing_user@test.com";
+    public static final String UPDATED_USER_NAME = "UpdatedUser";
     public static final String NON_EXISTENT_EMAIL = "nonexistent_user@test.com";
 
     // Таймауты для HTTP-запросов
