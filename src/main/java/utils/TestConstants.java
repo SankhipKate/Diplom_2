@@ -13,6 +13,7 @@ public class TestConstants {
     public static final String FIELD_ACCESS_TOKEN = "accessToken";
     public static final String FIELD_INGREDIENTS = "data._id";
     public static final String FIELD_ORDER_NUMBER = "order.number";
+    public static final String FIELD_ORDERS = "orders";
 
 
     // Сообщения об ошибках
@@ -22,6 +23,7 @@ public class TestConstants {
     public static final String MESSAGE_UNAUTHORIZED = "You should be authorised"; // Добавляем это сообщение
     public static final String MESSAGE_NO_INGREDIENTS = "Ingredient ids must be provided";
     public static final String MESSAGE_INTERNAL_ERROR = "Internal Server Error";
+    public static final String ORDERS_LIST_EMPTY_MESSAGE = "Orders list should not be empty";
 
     // Контент-тип
     public static final String CONTENT_TYPE_JSON = "application/json";

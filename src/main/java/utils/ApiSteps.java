@@ -85,7 +85,6 @@ public class ApiSteps {
                 .get(TestConstants.ENDPOINT_INGREDIENTS);
 
         response.then().statusCode(HTTP_OK); // Проверка статуса ответа
-
         return response.jsonPath().getList(TestConstants.FIELD_INGREDIENTS, String.class).toArray(new String[0]);
     }
 
@@ -98,6 +97,22 @@ public class ApiSteps {
                 .contentType(TestConstants.CONTENT_TYPE_JSON)
                 .body(new Order(ingredients)) // Подаем ингредиенты
                 .post(TestConstants.ENDPOINT_ORDERS);
+    }
+
+    // Получение заказов с авторизацией
+    @Step("Получение заказов пользователя с авторизацией")
+    public static Response getUserOrdersWithAuthorization(String accessToken) {
+        return RestAssured
+                .given().log().all()
+                .header(TestConstants.AUTHORIZATION_HEADER, accessToken)
+                .get(TestConstants.ENDPOINT_ORDERS);
+    }
+    // Получение заказов без авторизации
+    @Step("Получение заказов пользователя без авторизации")
+    public static Response getUserOrdersWithoutAuthorization() {
+        return RestAssured
+                .given().log().all()
+                .get(TestConstants.ENDPOINT_ORDERS);
     }
 
 }
