@@ -1,4 +1,4 @@
-package tests;
+package tests.user;
 
 import base.BaseTest;
 import io.restassured.response.Response;
@@ -31,9 +31,9 @@ public class UserUpdateTest extends BaseTest {
 
     @After
     public void tearDown() {
-        // Удаляем пользователя после тестов
+        //Удаление созданного пользователя после каждого теста
         if (testUser != null && accessToken != null) {
-            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
+            deleteUserAfterTest(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
         }
     }
 
