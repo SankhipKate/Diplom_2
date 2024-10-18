@@ -5,6 +5,7 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.response.Response;
 import models.UserCredentials;
 import org.junit.BeforeClass;
+import utils.ApiSteps;
 import utils.TestConstants;
 
 
@@ -48,5 +49,12 @@ public class BaseTest {
     // Вспомогательный метод для проверки статуса ответа
     protected void checkResponseStatus(Response response, int expectedStatus) {
         response.then().statusCode(expectedStatus);
+    }
+
+    //Удаление созданного пользователя
+    protected void deleteUserAfterTest(UserCredentials credentials, String accessToken) {
+        if (accessToken != null) {
+            ApiSteps.deleteUser(credentials, accessToken);
+        }
     }
 }

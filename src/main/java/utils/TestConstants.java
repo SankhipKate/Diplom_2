@@ -11,13 +11,17 @@ public class TestConstants {
     public static final String FIELD_USER_EMAIL = "user.email";
     public static final String FIELD_USER_NAME = "user.name";
     public static final String FIELD_ACCESS_TOKEN = "accessToken";
+    public static final String FIELD_INGREDIENTS = "data._id";
+    public static final String FIELD_ORDER_NUMBER = "order.number";
+
 
     // Сообщения об ошибках
     public static final String MESSAGE_USER_EXISTS = "User already exists";
     public static final String MESSAGE_MISSING_FIELDS = "Email, password and name are required fields";
     public static final String MESSAGE_INVALID_CREDENTIALS = "email or password are incorrect";
     public static final String MESSAGE_UNAUTHORIZED = "You should be authorised"; // Добавляем это сообщение
-
+    public static final String MESSAGE_NO_INGREDIENTS = "Ingredient ids must be provided";
+    public static final String MESSAGE_INTERNAL_ERROR = "Internal Server Error";
 
     // Контент-тип
     public static final String CONTENT_TYPE_JSON = "application/json";
@@ -26,10 +30,12 @@ public class TestConstants {
     public static final String ENDPOINT_REGISTER = "/api/auth/register";
     public static final String ENDPOINT_LOGIN = "/api/auth/login";
     public static final String ENDPOINT_USER = "/api/auth/user";
+    public static final String ENDPOINT_INGREDIENTS = "/api/ingredients";
+    public static final String ENDPOINT_ORDERS = "/api/orders";
+
 
     // Префиксы и заголовки
     public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static final String BEARER_PREFIX = "Bearer ";
 
 
     // Тестовые данные

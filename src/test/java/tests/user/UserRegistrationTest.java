@@ -1,4 +1,4 @@
-package tests;
+package tests.user;
 
 import base.BaseTest;
 import io.restassured.response.Response;
@@ -21,17 +21,15 @@ public class UserRegistrationTest extends BaseTest {
     private User testUser; // Созданный пользователь
     private String accessToken; // Токен для удаления пользователя
 
-
     @After
     public void tearDown() {
-        // Проверяем, что пользователь был создан и токен получен
+        //Удаление созданного пользователя после каждого теста
         if (testUser != null && accessToken != null) {
-            // Удаляем пользователя после тестов
-            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
+            deleteUserAfterTest(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
         }
     }
 
-     //Успешное создание уникального пользователя
+    //Успешное создание уникального пользователя
     @Test
     public void createUniqueUser() {
         testUser = new User(ApiSteps.generateUniqueEmail(), TestConstants.PASSWORD, TestConstants.TEST_USER_NAME);
