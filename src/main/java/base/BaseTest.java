@@ -3,8 +3,8 @@ package base;
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.response.Response;
+import models.UserCredentials;
 import org.junit.BeforeClass;
-import utils.RequestBuilder;
 import utils.TestConstants;
 
 
@@ -30,15 +30,14 @@ public class BaseTest {
     }
 
     // Метод для получения accessToken для пользователя
-    protected String getAccessToken(String email, String password) {
+    public static String getAccessToken(String email, String password) {
+        UserCredentials credentials = new UserCredentials(email, password);
+
         Response response = RestAssured
                 .given().log().all()
                 .contentType(TestConstants.CONTENT_TYPE_JSON)
-                .body(RequestBuilder.buildRequestBody(email, password))
+                .body(credentials)  // Передаем объект UserCredentials
                 .post(TestConstants.ENDPOINT_LOGIN);
-
-        // Добавляем вывод тела ответа для отладки
-        System.out.println("Ответ авторизации: " + response.getBody().asString());
 
         return response
                 .then()

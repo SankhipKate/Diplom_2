@@ -11,8 +11,6 @@ public class TestConstants {
     public static final String FIELD_USER_EMAIL = "user.email";
     public static final String FIELD_USER_NAME = "user.name";
     public static final String FIELD_ACCESS_TOKEN = "accessToken";
-    public static final String FIELD_EMAIL = "email";
-    public static final String FIELD_PASSWORD = "password";
 
     // Сообщения об ошибках
     public static final String MESSAGE_USER_EXISTS = "User already exists";
@@ -49,11 +47,6 @@ public class TestConstants {
     public static final String HTTP_CONNECTION_TIMEOUT = "http.connection.timeout";
     public static final String HTTP_SOCKET_TIMEOUT = "http.socket.timeout";
 
-    // Лог-сообщения
-    public static final String LOG_USER_CREATED = "Успешно создан пользователь с email: ";
-    public static final String LOG_ERROR_MESSAGE = "Получено сообщение об ошибке: ";
-    public static final String LOG_USER_LOGIN_SUCCESS = "Успешный логин пользователя с email: ";
-    public static final String LOG_USER_LOGIN_FAILURE = "Ошибка логина для пользователя с email: ";
 
     // Email
     public static final String UNIQUE_EMAIL_PREFIX = "unique_user_";

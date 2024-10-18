@@ -19,12 +19,15 @@ import static org.junit.Assert.*;
 public class UserRegistrationTest extends BaseTest {
 
     private User testUser; // Созданный пользователь
+    private String accessToken; // Токен для удаления пользователя
+
 
     @After
     public void tearDown() {
-        // Удаляем пользователя после тестов
-        if (testUser != null) {
-            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()));
+        // Проверяем, что пользователь был создан и токен получен
+        if (testUser != null && accessToken != null) {
+            // Удаляем пользователя после тестов
+            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
         }
     }
 
@@ -38,6 +41,9 @@ public class UserRegistrationTest extends BaseTest {
 
         // Проверяем, что код ответа 200 (успешно)
         checkResponseStatus(response, HTTP_OK);
+
+        // Получаем токен для удаления пользователя
+        accessToken = BaseTest.getAccessToken(testUser.getEmail(), testUser.getPassword());
 
         // Проверка полей ответа
         assertTrue(response.jsonPath().getBoolean(TestConstants.SUCCESS_FIELD));
@@ -53,6 +59,9 @@ public class UserRegistrationTest extends BaseTest {
         // Создаем пользователя, чтобы гарантировать его существование
         Response response = ApiSteps.createUser(testUser);
         checkResponseStatus(response, HTTP_OK);  // Проверяем, что первый запрос на создание успешен
+
+        // Получаем токен для удаления пользователя
+        accessToken = BaseTest.getAccessToken(testUser.getEmail(), testUser.getPassword());
 
         // Пытаемся зарегистрировать пользователя повторно
         Response secondResponse = ApiSteps.createUser(testUser);

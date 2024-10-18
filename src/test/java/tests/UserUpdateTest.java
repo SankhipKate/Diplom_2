@@ -32,8 +32,8 @@ public class UserUpdateTest extends BaseTest {
     @After
     public void tearDown() {
         // Удаляем пользователя после тестов
-        if (accessToken != null) {
-            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()));
+        if (testUser != null && accessToken != null) {
+            ApiSteps.deleteUser(new UserCredentials(testUser.getEmail(), testUser.getPassword()), accessToken);
         }
     }
 
@@ -55,16 +55,15 @@ public class UserUpdateTest extends BaseTest {
     }
 
 
-
     // Тест: попытка изменения данных без авторизации
     @Test
     public void updateUserDataWithoutAuthorization() {
-        // Новый email и имя для обновления
-        String newEmail = ApiSteps.generateUniqueEmail();
-        String newName = TestConstants.UPDATED_USER_NAME;
+
+        // Создаем нового пользователя
+        User updatedUser = new User(ApiSteps.generateUniqueEmail(), TestConstants.PASSWORD, TestConstants.UPDATED_USER_NAME);
 
         // Выполняем запрос на обновление данных пользователя без авторизации
-        Response response = ApiSteps.updateUserWithoutAuthorization(newEmail, newName);
+        Response response = ApiSteps.updateUserWithoutAuthorization(updatedUser);
 
         // Проверяем, что код ответа 401 Unauthorized
         checkResponseStatus(response, HTTP_UNAUTHORIZED);

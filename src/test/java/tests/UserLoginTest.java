@@ -18,10 +18,13 @@ import static org.junit.Assert.*;
  * Тесты для логина пользователей в системе Stellar Burgers.
  * Этот класс проверяет различные сценарии для логина.
  */
+
 public class UserLoginTest extends BaseTest {
 
     private String testEmail;  // Email созданного пользователя
     private String password = TestConstants.PASSWORD;
+    private String accessToken;  // Токен для удаления пользователя
+
 
     @Before
     public void setUp() {
@@ -29,13 +32,18 @@ public class UserLoginTest extends BaseTest {
         testEmail = ApiSteps.generateUniqueEmail();
         User user = new User(testEmail, password, TestConstants.TEST_USER_NAME);
         ApiSteps.createUser(user);
+        // Получаем accessToken для последующего удаления пользователя
+        accessToken = BaseTest.getAccessToken(testEmail, password);
     }
 
     @After
     public void tearDown() {
         // Удаляем пользователя после тестов
-        UserCredentials credentials = new UserCredentials(testEmail, password);
-        ApiSteps.deleteUser(credentials);    }
+        if (accessToken != null) {
+            UserCredentials credentials = new UserCredentials(testEmail, password);
+            ApiSteps.deleteUser(credentials, accessToken);  // Передаем accessToken при удалении
+        }
+    }
 
     // Успешный логин пользователя
     @Test
