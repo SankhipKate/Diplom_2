@@ -6,6 +6,9 @@ import io.restassured.response.Response;
 import models.Order;
 import models.User;
 import models.UserCredentials;
+import io.qameta.allure.Param;
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
+
 
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
@@ -45,7 +48,7 @@ public class ApiSteps {
 
     // Удаление пользователя
     @Step("Удаление пользователя")
-    public static void deleteUser(UserCredentials credentials, String accessToken) {
+    public static void deleteUser(UserCredentials credentials,  @Param(mode = HIDDEN) String accessToken) {
         // Печатаем токен для проверки
         System.out.println("Access Token: " + accessToken);
         RestAssured
@@ -58,7 +61,7 @@ public class ApiSteps {
 
     // Обновление данных пользователя с авторизацией
     @Step("Обновление данных пользователя с авторизацией")
-    public static Response updateUserWithAuthorization(String accessToken, User updatedUser) {
+    public static Response updateUserWithAuthorization( @Param(mode = HIDDEN) String accessToken, User updatedUser) {
         return RestAssured
                 .given().log().all()
                 .header(TestConstants.AUTHORIZATION_HEADER, accessToken)
@@ -90,7 +93,7 @@ public class ApiSteps {
 
     // Создание заказа
     @Step("Создание заказа")
-    public static Response createOrder(String[] ingredients, String accessToken) {
+    public static Response createOrder(String[] ingredients,  @Param(mode = HIDDEN) String accessToken) {
         return RestAssured
                 .given().log().all()
                 .header(TestConstants.AUTHORIZATION_HEADER, accessToken)
@@ -101,7 +104,7 @@ public class ApiSteps {
 
     // Получение заказов с авторизацией
     @Step("Получение заказов пользователя с авторизацией")
-    public static Response getUserOrdersWithAuthorization(String accessToken) {
+    public static Response getUserOrdersWithAuthorization( @Param(mode = HIDDEN) String accessToken) {
         return RestAssured
                 .given().log().all()
                 .header(TestConstants.AUTHORIZATION_HEADER, accessToken)
